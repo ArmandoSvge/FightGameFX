@@ -1,0 +1,18 @@
+
+.btnPlay {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+    -fx-border-color: #3E3E3E;
+    -fx-border-width: 2px;
+    -fx-padding: 10px 20px;
+}
+
+
+.btnPlay:pressed {
+    -fx-background-color: #357D4E;
+}
+.btnPlay:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="1046.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fightgamefx.SelectionController">
+    <children>
+        <ImageView fitHeight="561.0" fitWidth="1058.0" layoutX="-10.0" layoutY="-7.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@fondos/b9c502a3b8c62aadf59dd127c4d67bdd.gif" />
+            </image>
+        </ImageView>
+        <MediaView fx:id="mediaView" />
+        <Label fx:id="selectPnj" layoutX="94.0" layoutY="-38.0" prefHeight="229.0" prefWidth="1058.0" text="SELECT CHARACTER">
+            <font>
+                <Font name="Franklin Gothic Heavy Italic" size="75.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="196.0" fitWidth="214.0" layoutX="57.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@soldier.gif" />
+            </image>
+            <effect>
+                <DropShadow />
+            </effect>
+        </ImageView>
+        <ImageView fitHeight="212.0" fitWidth="159.0" layoutX="256.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@lobo.gif" />
+            </image>
+            <effect>
+                <DropShadow />
+            </effect>
+        </ImageView>
+        <ImageView fitHeight="204.0" fitWidth="214.0" layoutX="437.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@raider.gif" />
+            </image>
+            <effect>
+                <DropShadow />
+            </effect>
+        </ImageView>
+        <ImageView fitHeight="229.0" fitWidth="284.0" layoutX="602.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@solaris.gif" />
+            </image>
+            <effect>
+                <DropShadow />
+            </effect>
+        </ImageView>
+        <ImageView fitHeight="229.0" fitWidth="221.0" layoutX="779.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@vampire.gif" />
+            </image>
+            <effect>
+                <DropShadow />
+            </effect>
+        </ImageView>
+      <AnchorPane layoutX="-5.0" layoutY="545.0" prefHeight="45.0" prefWidth="1058.0" style="-fx-background-color: black;" />
+      <ImageView fx:id="imgSoldier" fitHeight="94.0" fitWidth="183.0" layoutX="67.0" layoutY="393.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#abrirNuevaInterfaz" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Sprites/fhp40j5h-removebg-preview%20(2).png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="imgLobo" fitHeight="94.0" fitWidth="183.0" layoutX="279.0" layoutY="388.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#abrirNuevaInterfaz" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Sprites/image.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="imgRaider" fitHeight="412.0" fitWidth="274.0" layoutX="415.0" layoutY="311.0" onMouseClicked="#abrirNuevaInterfaz" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Sprites/fhp40j5h-removebg-preview%20(1).png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="imgVampiro" fitHeight="74.0" fitWidth="94.0" layoutX="852.0" layoutY="413.0" onMouseClicked="#abrirNuevaInterfaz" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Sprites/boca_de_vampiro_pixel_art-removebg-preview.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="imgKnight" fitHeight="187.0" fitWidth="257.0" layoutX="623.0" layoutY="379.0" onMouseClicked="#abrirNuevaInterfaz" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Sprites/espada_de_darksouls_pixel_art-removebg-preview%20(1).png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+    </children>
+</AnchorPane>
