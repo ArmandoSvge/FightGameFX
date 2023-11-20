@@ -4,16 +4,27 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class tableController implements Initializable {
@@ -28,70 +39,56 @@ public class tableController implements Initializable {
 
     @FXML
     private Label tableLabel;
+    @FXML
+    private Button btnRestart;
 
     @FXML
     private TableView<Personaje> tbStadistics;
 
-public void addPlayers(){
-    String Per1 = null;
-    String Per2 = null;
-    String Winner = fightController.Realwinner;
-    System.out.println(fightController.Realwinner);
-    switch (Personaje.image2Path) {
-        case "raider.gif":
-Per2 = "Raider";
-            break;
-        case "lobo.png":
 
-            Per2 = "Lobo";
-            break;
-        case "soldier.gif":
-            Per2 = "Soldier";
-            break;
-        case "vampire.gif":
-            Per2 = "Vampire";
+    @FXML
+    private void replayInterface(MouseEvent event) {
+        try {
 
-            break;
-        case "knight.png":
-            Per2 = "Knight";
-
-            break;
-
-    }
-    switch (Personaje.image1Path) {
-        case "raider.gif":
-            Per1 = "Raider";
-            break;
-        case "lobo.png":
-
-            Per1 = "Lobo";
-            break;
-        case "soldier.gif":
-            Per1 = "Soldier";
-            break;
-        case "vampire.gif":
-            Per1 = "Vampire";
-
-            break;
-        case "knight.png":
-            Per1 = "Knight";
-
-            break;
+            Stage currentStage = (Stage) tableLabel.getScene().getWindow();
 
 
-    }
-    Personaje playStatistic = new Personaje(Per1,Per2,Winner);
-    personajes.add(playStatistic);
-    tbStadistics.setItems(personajes);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectionView.fxml"));
+            Parent root = loader.load();
 
+
+            SelectionController controller = loader.getController();
+
+
+            Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("logo.png")));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+
+
+            currentStage.hide();
+
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.setWidth(1055);
+            stage.setHeight(580);
+            stage.getIcons().add(icon);
+            stage.setTitle("SPEC OPS");
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         personajes = FXCollections.observableArrayList();
+        ObservableList<Personaje> results = ResultTable.getCombatResults();
         this.colJug1.setCellValueFactory(new PropertyValueFactory("nombre"));
         this.colJug2.setCellValueFactory(new PropertyValueFactory("personaje2"));
         this.colWinner.setCellValueFactory(new PropertyValueFactory("winner"));
-        addPlayers();
+        tbStadistics.setItems(results);
+
     }
 }
 

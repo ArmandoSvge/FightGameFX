@@ -47,10 +47,7 @@ public class Personaje {
     String pathDefense;
 
 
-    //public void setSelectedImagePaths(String selectedImage1Path , String selectedImage2Path) {
-      //  image1Path=selectedImage1Path;
-      //  image2Path=selectedImage2Path;
-  //  }
+
 
     public Personaje(String nombre) {
         this.vida = 100;

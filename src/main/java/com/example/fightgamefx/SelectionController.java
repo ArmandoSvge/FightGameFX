@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SelectionController implements Initializable {
@@ -78,6 +80,7 @@ public class SelectionController implements Initializable {
     private void cargarFightController() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fight.fxml"));
         Parent root;
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("logo.png")));
         try {
             root = loader.load();
             fightController fightController = loader.getController();
@@ -90,7 +93,8 @@ public class SelectionController implements Initializable {
             newStage.setScene(scene);
             newStage.setWidth(1655);
             newStage.setHeight(850);
-
+            newStage.getIcons().add(icon);
+            newStage.setTitle("SPEC OPS");
             // Obtiene la referencia de la ventana actual
             Stage currentStage = (Stage) imgKnight.getScene().getWindow();
 

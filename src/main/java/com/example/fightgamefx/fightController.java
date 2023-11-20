@@ -27,6 +27,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.EventObject;
+import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -41,8 +42,10 @@ public class fightController implements Initializable {
         @FXML
         private Label winnerLabel;
 
+
+
         @FXML
-        private Button btnRestart;
+        private ImageView btnReplay;
 
 
         @FXML
@@ -79,6 +82,7 @@ public class fightController implements Initializable {
 
         @FXML
         private ProgressBar progressBar2;
+        ResultTable resultTable;
 
         private boolean player1Turn = true;
         private boolean player2Turn = false;
@@ -171,7 +175,7 @@ public class fightController implements Initializable {
                         }
 
 
-                        double randomDecrement = (new Random().nextDouble() * 0.2 + 0.1); // Números entre 0.1 y 0.3
+                        double randomDecrement = (new Random().nextDouble() * 0.2 + 0.1);
                         double newValue = progressBar2.getProgress() - randomDecrement;
                         progressBar2.setProgress(Math.max(0, newValue));
 
@@ -262,7 +266,7 @@ public class fightController implements Initializable {
 
 
 
-                        double randomDecrement = (new Random().nextDouble() * 0.2 + 0.1); // Números entre 0.1 y 0.3
+                        double randomDecrement = (new Random().nextDouble() * 0.2 + 0.1);
                         double newValue = progressBar1.getProgress() - randomDecrement;
                         progressBar1.setProgress(Math.max(0, newValue));
                         if (newValue >= 3) {
@@ -348,7 +352,7 @@ public class fightController implements Initializable {
 
                         }
 
-                        double randomDecrement = (new Random().nextDouble() * 0.05 + 0.4); // Números entre 0.4 y 0.45
+                        double randomDecrement = (new Random().nextDouble() * 0.05 + 0.4);
                         double newValue = progressBar2.getProgress() - randomDecrement;
                         progressBar2.setProgress(Math.max(0, newValue));
 
@@ -434,7 +438,7 @@ public class fightController implements Initializable {
 
                         }
 
-                        double randomDecrement = (new Random().nextDouble() * 0.05 + 0.4); // Números entre 0.4 y 0.45
+                        double randomDecrement = (new Random().nextDouble() * 0.05 + 0.4);
                         double newValue = progressBar1.getProgress() - randomDecrement;
                         progressBar1.setProgress(Math.max(0, newValue));
                         if (newValue >= 3) {
@@ -458,21 +462,20 @@ public class fightController implements Initializable {
         }
         private void checkGameStatus() {
                 if (progressBar1.getProgress() <= 0 || progressBar2.getProgress() <= 0) {
-                        // Desactivar botones
+
                         btnattack1.setDisable(true);
                         btnattack2.setDisable(true);
                         btnspecial1.setDisable(true);
                         btnspecial2.setDisable(true);
 
-                        // Mostrar el mensaje del ganador
+
                         if (progressBar1.getProgress() <= 0) {
                                 showWinner("Personaje 2");
                         } else {
                                 showWinner("Personaje 1");
                         }
 
-                        // Hacer visible el botón oculto
-                        //btnRestart.setVisible(true);
+
                 }
         }
 
@@ -482,14 +485,66 @@ public class fightController implements Initializable {
                 winnerLabel.setText("¡El ganador es " + winner + "!");
                 winnerLabel.setVisible(true);
                 Realwinner = winner;
-
+                addPlayers();
 
                 openNewInterface();
+        }
+        public void addPlayers(){
+                String Per1 = null;
+                String Per2 = null;
+                String Winner = fightController.Realwinner;
+                System.out.println(fightController.Realwinner);
+                switch (Personaje.image2Path) {
+                        case "raider.gif":
+                                Per2 = "Raider";
+                                break;
+                        case "lobo.gif":
+
+                                Per2 = "Lobo";
+                                break;
+                        case "soldier.gif":
+                                Per2 = "Soldier";
+                                break;
+                        case "vampire.gif":
+                                Per2 = "Vampire";
+
+                                break;
+                        case "knight.png":
+                                Per2 = "Knight";
+
+                                break;
+
+                }
+                switch (Personaje.image1Path) {
+                        case "raider.gif":
+                                Per1 = "Raider";
+                                break;
+                        case "lobo.gif":
+
+                                Per1 = "Lobo";
+                                break;
+                        case "soldier.gif":
+                                Per1 = "Soldier";
+                                break;
+                        case "vampire.gif":
+                                Per1 = "Vampire";
+
+                                break;
+                        case "knight.png":
+                                Per1 = "Knight";
+
+                                break;
+
+
+                }
+                Personaje playStatistic = new Personaje(Per1,Per2,Winner);
+                ResultTable.addCombatResult(playStatistic);
+
         }
         @FXML
         private void openNewInterface() {
                 try {
-                        Stage currentStage = (Stage) winnerLabel.getScene().getWindow(); // Utiliza winnerLabel en lugar de event.getSource()
+                        Stage currentStage = (Stage) winnerLabel.getScene().getWindow();
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("TableView.fxml"));
                         Parent root = loader.load();
                         tableController controller = loader.getController();
@@ -497,12 +552,14 @@ public class fightController implements Initializable {
                         Scene scene = new Scene(root);
 
                         currentStage.hide();
-
+                        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("logo.png")));
                         Stage stage = new Stage();
                         stage.initModality(Modality.APPLICATION_MODAL);
                         stage.setScene(scene);
                         stage.setWidth(700);
                         stage.setHeight(450);
+                        stage.getIcons().add(icon);
+                        stage.setTitle("SPEC OPS");
                         stage.show();
                 } catch (IOException e) {
                         e.printStackTrace();

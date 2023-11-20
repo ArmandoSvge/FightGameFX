@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -47,16 +49,18 @@ public class HelloController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectionView.fxml"));
             Parent root = loader.load();
             SelectionController controller = loader.getController();
-
+            Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("logo.png")));
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("stylesSelection.css").toExternalForm());
 
 
-            currentStage.close();
+            currentStage.hide();
 
 
             Stage stage = new Stage();
+            stage.getIcons().add(icon);
+            stage.setTitle("SPEC OPS");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.setWidth(1055);
